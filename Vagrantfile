@@ -53,6 +53,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   vb.customize ["modifyvm", :id, "--memory", "1024"]
   # end
 
+  # This patches apt's sources.list file so that all packages will subsequently be downloaded from European servers
+
+  config.vm.provision :shell, :inline => "sed -i 's/us.archive/de.archive/g' /etc/apt/sources.list"
+
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
 
