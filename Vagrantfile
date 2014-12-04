@@ -56,10 +56,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
 
-  # config.vm.provision "puppet" do |puppet|
-  #   puppet.module_path = "puppet/modules"
-  #   puppet.manifests_path = "puppet/manifests"
-  # end
+  config.vm.provision "puppet" do |puppet|
+    puppet.module_path = "puppet/modules"
+    puppet.manifests_path = "puppet/manifests"
+    puppet.manifest_file  = "bootstrap.pp"
+  end
 
   config.vm.hostname = "ordina.dev"
 
