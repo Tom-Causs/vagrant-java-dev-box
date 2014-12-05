@@ -6,7 +6,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "hashicorp/precise32"
+  config.vm.box = "ubuntu/trusty64"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -52,10 +52,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   # Use VBoxManage to customize the VM. For example to change memory:
   #   vb.customize ["modifyvm", :id, "--memory", "1024"]
   # end
-
-  # This patches apt's sources.list file so that all packages will subsequently be downloaded from European servers
-
-  config.vm.provision :shell, :inline => "sed -i 's/us.archive/de.archive/g' /etc/apt/sources.list"
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
