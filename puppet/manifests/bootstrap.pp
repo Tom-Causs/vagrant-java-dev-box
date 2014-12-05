@@ -18,3 +18,16 @@ class { 'elasticsearch':
 }
 
 elasticsearch::instance { 'ord-01': }
+
+################## MongoDB ##################
+class {'::mongodb::server':
+  port    => 27017,
+}
+
+# Create directory for dbpath
+file { [ "/data", "/data/db" ]:
+	require	=> Class["::mongodb::server"],
+	ensure	=> directory,
+	owner	=> mongodb,
+	group	=> mongodb,
+}
