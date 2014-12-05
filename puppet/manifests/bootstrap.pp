@@ -6,9 +6,8 @@ class { 'apt':
 }
 
 ################### Java ####################
-package { 'openjdk-7-jre-headless':
-	require  => Class['apt'],
-	ensure => latest
+class { 'java':
+  distribution => 'jre',	# defaults to jdk
 }
 
 ############### Elasticsearch ###############
