@@ -12,9 +12,13 @@ class { 'java':
 
 ############### Elasticsearch ###############
 class { 'elasticsearch':
-  version => '1.4.1',
+  version => '1.1.1',
   manage_repo  => true,
-  repo_version => '1.4',	# corresponds with the major version of Elasticsearch
+  repo_version => '1.1',	# corresponds with the major version of Elasticsearch
+  config => { 
+  	'cluster.name' => 'ordina-dev-001',
+    'network.host' => '0.0.0.0',
+  }
 }
 
 elasticsearch::instance { 'ord-01':
