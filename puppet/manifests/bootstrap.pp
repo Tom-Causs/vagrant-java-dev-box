@@ -17,9 +17,18 @@ class { 'elasticsearch':
   repo_version => '1.4',	# corresponds with the major version of Elasticsearch
 }
 
-elasticsearch::instance { 'ord-01': }
+elasticsearch::instance { 'ord-01':
+  config => { 'node.name' => 'dataNode-01' }
+}
+elasticsearch::instance { 'ord-02':
+  config => { 'node.name' => 'dataNode-02' }
+}
 
-################## MongoDB ##################
-class { '::mongodb::server':
-  port    => 27017,
+elasticsearch::plugin{'lmenezes/elasticsearch-kopf':
+  module_dir => 'kopf',
+  instances  => 'ord-01'
+}
+elasticsearch::plugin{'elasticsearch/marvel/latest':
+  module_dir => 'marvel',
+  instances  => 'ord-01'
 }
